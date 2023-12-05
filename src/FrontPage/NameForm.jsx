@@ -3,7 +3,7 @@ import { Button, Input, Link } from "react-daisyui";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { usePlayer } from "../playerContext";
-import { BACKEND_PORT, GAME_ID_KEY } from "../constants";
+import { BACKEND_PORT, GAME_ID_KEY, PLAYER_NAME_KEY } from "../constants";
 
 const NameForm = () => {
   // State to store the input value
@@ -38,6 +38,7 @@ const NameForm = () => {
     console.log({ player });
     localStorage.setItem("playerId", player.playerId);
     localStorage.setItem("changeAllowed", true);
+    localStorage.setItem(PLAYER_NAME_KEY, name);
     navigate("/team");
   };
 

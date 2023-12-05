@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import PunishmentDisplay from "./PunishmentDisplay";
 import RewardDisplay from "./RewardDisplay";
@@ -28,8 +28,15 @@ const StatusPage = () => {
   // );
   handleChampionRotation(changeCounter, navigate);
   const rotationMode = localStorage.getItem("rotationMode");
+
+  const requestRunningRef = useRef(false);
+
   useEffect(() => {
     const fetchEvents = async () => {
+      if (requestRunningRef.current === true) {
+        return;
+      }
+      requestRunningRef.current = true;
       const response = await axios.get(
         localStorage.getItem("baseURL") + BACKEND_PORT + "Status",
         {
@@ -47,6 +54,7 @@ const StatusPage = () => {
       setKda(Allstatus.kda);
       setChangeCounter(Allstatus.counter);
       setEnemyTeam(Allstatus.enemyTeam);
+      requestRunningRef.current = false;
     };
     fetchEvents();
     const intervalId = setInterval(() => {

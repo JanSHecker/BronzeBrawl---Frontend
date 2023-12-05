@@ -8,9 +8,9 @@ import { BACKEND_PORT, GAME_ID_KEY } from "../constants";
 const TeamSelectionPage = () => {
   const [bluePlayers, setBluePlayers] = useState([]);
   const [redPlayers, setRedPlayers] = useState([]);
-  const [teamless, setTeamless] = useState(true);
   const [blueID, setBlueID] = useState();
   const [redID, setRedID] = useState();
+  const [team, setTeam] = useState();
   const navigate = useNavigate();
   if (localStorage.getItem("changeAllowed") === "false") {
     navigate("/status");
@@ -32,13 +32,13 @@ const TeamSelectionPage = () => {
           params: { id: localStorage.getItem(GAME_ID_KEY) },
         }
       );
-      console.log(res.data);
+
       const allPlayers = res.data.players;
       const teams = res.data.teams;
       // console.log({ Allplayers });
       const bluePlayersData = allPlayers.blue;
       const redPlayersData = allPlayers.red;
-      console.log(allPlayers);
+
       setBluePlayers(bluePlayersData);
       setRedPlayers(redPlayersData);
       setBlueID(teams[0].teamId);
@@ -64,12 +64,14 @@ const TeamSelectionPage = () => {
         <Team
           teamNumber={blueID}
           players={bluePlayers}
-          setTeamless={setTeamless}
+          setTeam={setTeam}
+          team={team}
         />
         <Team
           teamNumber={redID}
           players={redPlayers}
-          setTeamless={setTeamless}
+          setTeam={setTeam}
+          team={team}
         />
       </div>
       <Button
@@ -77,7 +79,7 @@ const TeamSelectionPage = () => {
         wide="true"
         className="m-8"
         onClick={handleReady}
-        disabled={teamless}
+        disabled={team === undefined}
       >
         READY
       </Button>

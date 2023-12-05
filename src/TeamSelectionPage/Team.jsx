@@ -1,16 +1,18 @@
 import { Button } from "react-daisyui";
 import TeamTable from "./TeamTable";
 import axios from "axios";
-import { BACKEND_PORT } from "../constants";
+import { BACKEND_PORT, PLAYER_NAME_KEY, TEAMBLUE, TEAMRED } from "../constants";
+import { useState } from "react";
 
-const Team = ({ teamNumber, players, setTeamless }) => {
+const Team = ({ teamNumber, players, setTeam, team }) => {
   // console.log("component was reloaded", players);
+  const teamIsFull = players.length === 5 ? true : false;
 
   let teamName;
   if (teamNumber % 2 === 1) {
-    teamName = "Blue Team";
+    teamName = TEAMBLUE;
   } else {
-    teamName = "Red Team";
+    teamName = TEAMRED;
   }
   const handleJoin = (event) => {
     event.preventDefault();
@@ -19,10 +21,14 @@ const Team = ({ teamNumber, players, setTeamless }) => {
       player: localStorage.getItem("playerId"),
       team: teamNumber,
     });
-    setTeamless(false);
+
     localStorage.setItem("teamId", teamNumber);
   };
-  console.log({ teamNumber });
+  const playernames = players.map((player) => player.playerName);
+  console.log(playernames);
+  if (playernames.includes(localStorage.getItem(PLAYER_NAME_KEY))) {
+    setTeam(teamName);
+  }
   if (teamNumber === undefined) {
     return null;
   }
@@ -37,10 +43,15 @@ const Team = ({ teamNumber, players, setTeamless }) => {
       </div>
 
       <div className="w-full">
-        <TeamTable players={players} />
+        <TeamTable players={players} setTeam={setTeam} />
       </div>
 
-      <Button className="m-2" color="neutral" onClick={handleJoin}>
+      <Button
+        className="m-2"
+        color="neutral"
+        onClick={handleJoin}
+        disabled={teamIsFull || team === teamName}
+      >
         Join
       </Button>
     </div>
