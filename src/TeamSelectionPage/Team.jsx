@@ -4,7 +4,7 @@ import axios from "axios";
 import { BACKEND_PORT, PLAYER_NAME_KEY, TEAMBLUE, TEAMRED } from "../constants";
 import { useState } from "react";
 
-const Team = ({ teamNumber, players, setTeam, team }) => {
+const Team = ({ teamNumber, players, setTeam, team, editModeOn }) => {
   // console.log("component was reloaded", players);
   const teamIsFull = players.length === 5 ? true : false;
 
@@ -43,7 +43,11 @@ const Team = ({ teamNumber, players, setTeam, team }) => {
       </div>
 
       <div className="w-full">
-        <TeamTable players={players} setTeam={setTeam} />
+        <TeamTable
+          players={players}
+          setTeam={setTeam}
+          editModeOn={editModeOn}
+        />
       </div>
 
       <Button

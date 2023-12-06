@@ -1,7 +1,7 @@
 import { Table } from "react-daisyui";
 import Player from "./Player";
 
-const TeamTable = ({ players, setTeam }) => {
+const TeamTable = ({ players, setTeam, editModeOn }) => {
   return (
     <div>
       <Table className="w-full h-full">
@@ -12,7 +12,12 @@ const TeamTable = ({ players, setTeam }) => {
               <tr key={index}>
                 <td className="h-10">
                   {player ? (
-                    <Player playerName={player.playerName} setTeam={setTeam} />
+                    <Player
+                      playerName={player.playerName}
+                      id={player.playerId}
+                      setTeam={setTeam}
+                      editModeOn={editModeOn}
+                    />
                   ) : (
                     "..."
                   )}

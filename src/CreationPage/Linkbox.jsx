@@ -29,10 +29,9 @@ const Linkbox = ({ gameId, currentDomain }) => {
   };
   if (gameId != "") {
     return (
-      <div className="flex flex-col gap-4 border rounded border-black p-2 w-full max-w-xs bg-slate-400">
+      <div className="flex flex-col gap-2 border rounded border-black p-2 w-full max-w-xs bg-slate-400">
         {/* Explicit link */}
         <p className="m-1 text-center text-blue-600">{link + gameId}</p>
-
         {/* Copy button */}
         <Button className="border border-black" onClick={handleCopyClick}>
           {isCopied ? "Copied!" : "Copy Link"}
