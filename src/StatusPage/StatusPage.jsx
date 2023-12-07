@@ -91,6 +91,7 @@ export default StatusPage;
 
 const handleChampionRotation = (changeCounter, navigate) => {
   const rotationMode = localStorage.getItem("rotationMode");
+  console.log(changeCounter);
   if (changeCounter === "∞") navigate("/");
   let i;
   if (rotationMode === "Kills") i = 0;
