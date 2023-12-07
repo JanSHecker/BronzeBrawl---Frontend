@@ -15,7 +15,7 @@ const CreationPage = () => {
       /> */}
       <CreationForm setGameId={setGameId} currentDomain={currentDomain} />
       <Linkbox gameId={gameId} />
-      <p>testversion 1</p>
+      <p>testversion 1.knecht</p>
     </div>
   );
 };
