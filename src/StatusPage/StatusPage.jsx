@@ -26,12 +26,13 @@ const StatusPage = () => {
   // const fulfilledPunishments = punishmentStack.filter(
   //   (punishment) => !punishment.recieved
   // );
-  handleChampionRotation(changeCounter, navigate);
+
   const rotationMode = localStorage.getItem("rotationMode");
 
   const requestRunningRef = useRef(false);
 
   useEffect(() => {
+    handleChampionRotation(changeCounter, navigate);
     const fetchEvents = async () => {
       if (requestRunningRef.current === true) {
         return;
