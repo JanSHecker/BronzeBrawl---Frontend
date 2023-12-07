@@ -4,9 +4,7 @@ import Linkbox from "./Linkbox";
 
 const CreationPage = () => {
   const [gameId, setGameId] = useState("");
-  let currentDomain = window.location.href;
-  currentDomain = currentDomain.toString().split(":");
-  currentDomain = currentDomain[0] + ":" + currentDomain[1];
+  const currentDomain = window.location.origin;
   console.log(currentDomain);
   return (
     <div className="border rounded border-black p-2 bg-slate-300">
@@ -16,7 +14,7 @@ const CreationPage = () => {
         className="mb-8 max-w-full h-auto"
       /> */}
       <CreationForm setGameId={setGameId} currentDomain={currentDomain} />
-      <Linkbox gameId={gameId} currentDomain={currentDomain} />
+      <Linkbox gameId={gameId} />
     </div>
   );
 };

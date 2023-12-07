@@ -2,8 +2,8 @@ import { useState } from "react";
 import { FRONTEND_PORT } from "../constants";
 import { Button } from "react-daisyui";
 
-const Linkbox = ({ gameId, currentDomain }) => {
-  const link = currentDomain + FRONTEND_PORT + "name/";
+const Linkbox = ({ gameId}) => {
+  const link = window.location.href + "/name";
   const [isCopied, setIsCopied] = useState(false);
   console.log(gameId !== "");
   const handleCopyClick = () => {

@@ -6,9 +6,7 @@ const FrontPage = () => {
   const params = useParams();
   const gameId = params.parameter;
   localStorage.setItem(GAME_ID_KEY, gameId);
-  let currentDomain = window.location.href;
-  currentDomain = currentDomain.toString().split(":");
-  currentDomain = currentDomain[0] + ":" + currentDomain[1];
+  const currentDomain = window.location.origin;
   localStorage.setItem("baseURL", currentDomain);
   return (
     <>
