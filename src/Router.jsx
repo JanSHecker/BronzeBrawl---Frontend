@@ -5,11 +5,16 @@ import StatusPage from "./StatusPage/StatusPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreationPage from "./CreationPage/CreationPage";
 import { useEffect } from "react";
+import LoLApiFeed from "./LoLApi/LolApi";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <CreationPage />,
+  },
+  {
+    path: "/lolApi",
+    element: <LoLApiFeed />,
   },
   {
     path: "/name/:parameter",
