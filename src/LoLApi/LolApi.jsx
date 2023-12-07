@@ -8,7 +8,12 @@ const LoLApiFeed = () => {
   useEffect(() => {
     const getLolInput = async () => {
       const allGameDataUrl = BASE_URL + ALL_GAME_DATA_ENDPOINT;
-      const axiosInstance = axios.create();
+      const axiosInstance = axios.create({
+          httpsAgent: new https.Agent({
+              rejectUnauthorized: false
+          })
+      });
+      
       const response = await axiosInstance.get(allGameDataUrl);
       const responseData = response.data;
       return responseData;
