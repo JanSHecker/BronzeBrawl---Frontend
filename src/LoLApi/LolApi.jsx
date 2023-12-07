@@ -2,18 +2,14 @@ import axios from "axios";
 import { useEffect } from "react";
 import { BACKEND_PORT } from "../constants";
 import { Button } from "react-daisyui";
+
 const LoLApiFeed = () => {
   const BASE_URL = "https://127.0.0.1:2999";
   const ALL_GAME_DATA_ENDPOINT = "/liveclientdata/allgamedata";
   useEffect(() => {
     const getLolInput = async () => {
       const allGameDataUrl = BASE_URL + ALL_GAME_DATA_ENDPOINT;
-      const axiosInstance = axios.create({
-          httpsAgent: new https.Agent({
-              rejectUnauthorized: false
-          })
-      });
-      
+      const axiosInstance = axios.create();
       const response = await axiosInstance.get(allGameDataUrl);
       const responseData = response.data;
       return responseData;
