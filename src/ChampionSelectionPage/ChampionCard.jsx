@@ -10,13 +10,13 @@ const ChampionCard = ({ champion }) => {
 
   const name = processChampionName(champion.championName);
 
-  const handleChampionSelection = () => {
+  const handleChampionSelection = async () => {
     const body = {
       player: localStorage.getItem("playerId"),
       champion: champion.championId,
       counter: localStorage.getItem("defaultRotationCounter"),
     };
-    axios.post(
+    await axios.post(
       localStorage.getItem("baseURL") + BACKEND_PORT + "chooseChampion",
       body
     );
