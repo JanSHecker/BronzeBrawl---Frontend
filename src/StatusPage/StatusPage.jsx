@@ -48,6 +48,7 @@ const StatusPage = () => {
         }
       );
       const Allstatus = response.data;
+      console.log({ Allstatus });
       console.log(localStorage.getItem("enemyTeamId"));
       setPunishmentStack(Allstatus.punishments);
       setRewardStack(Allstatus.rewards);
