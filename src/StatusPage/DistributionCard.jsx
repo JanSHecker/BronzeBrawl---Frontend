@@ -11,10 +11,6 @@ const DistributionCard = ({ champion, rewardStack, hasRewards }) => {
   const handleDistribution = async () => {
     console.log(localStorage.getItem("playerId"));
     setLoading(true);
-    await axios.post(
-      localStorage.getItem("baseURL") + BACKEND_PORT + "createPunishment",
-      {}
-    );
     console.log(champion);
     await axios.post(
       localStorage.getItem("baseURL") + BACKEND_PORT + "confirmReward",
