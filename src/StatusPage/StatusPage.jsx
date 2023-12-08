@@ -32,8 +32,8 @@ const StatusPage = () => {
   const requestRunningRef = useRef(false);
 
   useEffect(() => {
-    handleChampionRotation(changeCounter, navigate);
     const fetchEvents = async () => {
+      handleChampionRotation(changeCounter, navigate);
       if (requestRunningRef.current === true) {
         return;
       }
