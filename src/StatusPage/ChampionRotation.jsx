@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const ChampionRotation = ({ changeCounter, rotationMode, navigate }) => {
-  handleChampionRotation(changeCounter, navigate);
+  useEffect(() => {
+    handleChampionRotation(changeCounter, navigate);
+  }, [changeCounter]);
   if (rotationMode === "Kills") {
     return (
       <div className="flex flex-col text-center justify-evenly border border-black rounded p-1 bg-slate-300">
