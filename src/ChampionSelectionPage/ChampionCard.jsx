@@ -26,7 +26,7 @@ const ChampionCard = ({ champion }) => {
     navigate("/status");
   };
 
-  const championUrl = `https://static.bigbrain.gg/assets/lol/riot_static/13.22.1/img/champion/${name}.png`;
+  const championUrl = `https://static.bigbrain.gg/assets/lol/riot_static/13.24.1/img/champion/${name}.png`;
   const imageStyle = {
     filter: champion.player !== null ? "grayscale(100%)" : "none",
   };

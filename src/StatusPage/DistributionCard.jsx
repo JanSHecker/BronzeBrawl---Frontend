@@ -7,7 +7,7 @@ import { BACKEND_PORT, DISTRIBUTED_PUNISHMENT, REWARD_KEY } from "../constants";
 const DistributionCard = ({ champion, rewardStack, hasRewards }) => {
   const [loading, setLoading] = useState(false);
   const name = processChampionName(champion.championName);
-  const championUrl = `https://static.bigbrain.gg/assets/lol/riot_static/13.22.1/img/champion/${name}.png`;
+  const championUrl = `https://static.bigbrain.gg/assets/lol/riot_static/13.24.1/img/champion/${name}.png`;
   const handleDistribution = async () => {
     console.log(localStorage.getItem("playerId"));
     setLoading(true);

@@ -7,7 +7,7 @@ import ChampionRotation from "./ChampionRotation";
 import { useNavigate } from "react-router-dom";
 
 const StatusPage = () => {
-  const imgURL = `https://static.bigbrain.gg/assets/lol/riot_static/13.22.1/img/champion/${localStorage.getItem(
+  const imgURL = `https://static.bigbrain.gg/assets/lol/riot_static/13.24.1/img/champion/${localStorage.getItem(
     "activeChampionName"
   )}.png`;
   const navigate = useNavigate();
@@ -33,7 +33,6 @@ const StatusPage = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      handleChampionRotation(changeCounter, navigate);
       if (requestRunningRef.current === true) {
         return;
       }
@@ -77,6 +76,7 @@ const StatusPage = () => {
           <ChampionRotation
             changeCounter={changeCounter}
             rotationMode={rotationMode}
+            navigate={navigate}
           />
         </div>
         <PunishmentDisplay punishmentStack={unfulfilledPunishments} />
@@ -89,16 +89,3 @@ const StatusPage = () => {
   );
 };
 export default StatusPage;
-
-const handleChampionRotation = (changeCounter, navigate) => {
-  const rotationMode = localStorage.getItem("rotationMode");
-  console.log(changeCounter);
-  if (changeCounter === "∞") navigate("/");
-  let i;
-  if (rotationMode === "Kills") i = 0;
-  if (rotationMode === "Deaths") i = 1;
-  if (changeCounter[i] <= 0) {
-    localStorage.setItem("changeAllowed", "championOnly");
-    navigate("/champion");
-  }
-};

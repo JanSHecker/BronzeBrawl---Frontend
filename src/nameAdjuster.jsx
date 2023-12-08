@@ -12,6 +12,7 @@ function processChampionName(name) {
     "Nunu&Willump",
     "JarvanIV",
     "MissFortune",
+    "LeeSin",
   ];
 
   if (!allowedChampions.includes(name)) {

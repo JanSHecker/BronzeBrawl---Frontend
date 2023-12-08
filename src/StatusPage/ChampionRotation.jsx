@@ -1,6 +1,7 @@
 import React from "react";
 
-const ChampionRotation = ({ changeCounter, rotationMode }) => {
+const ChampionRotation = ({ changeCounter, rotationMode, navigate }) => {
+  handleChampionRotation(changeCounter, navigate);
   if (rotationMode === "Kills") {
     return (
       <div className="flex flex-col text-center justify-evenly border border-black rounded p-1 bg-slate-300">
@@ -26,3 +27,15 @@ const ChampionRotation = ({ changeCounter, rotationMode }) => {
 };
 
 export default ChampionRotation;
+const handleChampionRotation = (changeCounter, navigate) => {
+  const rotationMode = localStorage.getItem("rotationMode");
+  console.log(changeCounter);
+  if (changeCounter === "∞") navigate("/");
+  let i;
+  if (rotationMode === "Kills") i = 0;
+  if (rotationMode === "Deaths") i = 1;
+  if (changeCounter[i] <= 0) {
+    localStorage.setItem("changeAllowed", "championOnly");
+    navigate("/champion");
+  }
+};
