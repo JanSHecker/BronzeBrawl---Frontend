@@ -19,7 +19,7 @@ const DistributionCard = ({ champion, rewardStack, hasRewards }) => {
         punishment: {
           distributor: parseInt(localStorage.getItem("playerId")),
           punishmentType: DISTRIBUTED_PUNISHMENT,
-          amount: REWARD_KEY,
+          amount: localStorage.getItem(REWARD_KEY),
           recipient: champion.player,
         },
       }

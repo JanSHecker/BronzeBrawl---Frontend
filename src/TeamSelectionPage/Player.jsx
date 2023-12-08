@@ -16,7 +16,10 @@ const Player = ({ playerName, editModeOn, id }) => {
   } else {
     return (
       <div className="flex items-center gap-2">
-        <h1 className="font-semibold">{playerName} (you)</h1>
+        <h1 className="font-semibold">
+          {playerName}
+          {playerName === localStorage.getItem(PLAYER_NAME_KEY) ? " (you)" : ""}
+        </h1>
       </div>
     );
   }

@@ -1,13 +1,14 @@
 import { useState } from "react";
 import CreationForm from "./CreationForm";
 import Linkbox from "./Linkbox";
+import { Button } from "react-daisyui";
 
 const CreationPage = () => {
   const [gameId, setGameId] = useState("");
-  const currentDomain = window.location.origin;
+  const currentDomain = "http://" + window.location.hostname;
   console.log(currentDomain);
   return (
-    <div className="border rounded border-black p-2 bg-slate-300">
+    <div className="flex flex-col border rounded border-black p-1 bg-slate-300 items-center">
       {/* <img
         src="./bronzeIcon150.png"
         alt="bronze brawl with icon"
@@ -15,7 +16,11 @@ const CreationPage = () => {
       /> */}
       <CreationForm setGameId={setGameId} currentDomain={currentDomain} />
       <Linkbox gameId={gameId} />
-      <p>testversion 1.knecht</p>
+      <a href={window.location.origin + "/lolApi"} target="_blank">
+        <Button color="secondary" className="m-2 justify-self-center">
+          Open LoL Monitor
+        </Button>
+      </a>
     </div>
   );
 };

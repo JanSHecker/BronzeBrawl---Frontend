@@ -18,7 +18,7 @@ const PunishmentDisplay = ({ punishmentStack }) => {
     message = `You were Killed! Drink ${punishmentStack[0].amount}.`;
   } else if (punishmentStack[0].punishmentType === 2) {
     urlEnd = "item/3134";
-    message = `You recieved a punishment from another Player. Drink ${punishmentStack[0].amount}!`;
+    message = `You recieved a punishment from ${punishmentStack[0].distributor.playerName}. Drink ${punishmentStack[0].amount}!`;
   }
   const baseUrl =
     "https://static.bigbrain.gg/assets/lol/riot_static/13.23.1/img/";
