@@ -37,6 +37,7 @@ const handleChampionRotation = (changeCounter, navigate) => {
   if (rotationMode === "Kills") i = 0;
   if (rotationMode === "Deaths") i = 1;
   if (changeCounter[i] <= 0) {
+    console.log({ navigating: true, changeCounter });
     localStorage.setItem("changeAllowed", "championOnly");
     navigate("/champion");
   }
