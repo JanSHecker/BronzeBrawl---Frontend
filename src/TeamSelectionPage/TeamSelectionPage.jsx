@@ -82,14 +82,17 @@ const TeamSelectionPage = () => {
         <div></div>
         <Button
           color="primary"
-          wide="true"
           className="m-8 justify-self-center"
           onClick={handleReady}
           disabled={team === undefined}
         >
           READY
         </Button>
-        <EditButton setEditModeOn={setEditModeOn} editModeOn={editModeOn} />
+        <EditButton
+          className="justify-self-end"
+          setEditModeOn={setEditModeOn}
+          editModeOn={editModeOn}
+        />
       </div>
     </>
   );
