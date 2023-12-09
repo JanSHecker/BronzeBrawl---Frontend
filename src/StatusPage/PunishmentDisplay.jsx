@@ -27,16 +27,15 @@ const PunishmentDisplay = ({ punishmentStack }) => {
 
   return (
     <div>
-      <div className="flex flex-col bg-slate-300 gap-1 items-center border rounded border-black p-1">
-        <h1>{message}</h1>
+      <div className="flex flex-col bg-slate-300 gap-1 border rounded border-black p-1">
+        <div className="text-center text-sm">{message}</div>
         <img
           src={imgURL}
           alt="champion icon"
-          className="m-1 scale-75 border border-black"
+          className="m-1 w-1/5 border border-black self-center"
         ></img>
 
         <PunishmentButton
-          className="justify-self-center"
           isActive={punishmentStack.length > 0}
           punishmentStack={punishmentStack}
         />
@@ -61,23 +60,30 @@ const PunishmentButton = ({ isActive, punishmentStack }) => {
       <div className="grid grid-cols-3 w-full">
         <div></div>
         <Button
-          className="m-2 justify-self-center"
+          className="m-2 justify-self-center "
           color="primary"
+          size="xm"
           onClick={handleDone}
         >
           Done
         </Button>
-        <div className="justify-self-end text-center border border-black p-3 m-1 bg-primary">
-          <h1 className="text-white">{remainingPunishments}</h1>
-          <h3 className="text-white">Remaining</h3>
+        <div className="justify-self-end text-center border border-black p-3 m-1 bg-secondary">
+          <h1 className="text-white text-xs">{remainingPunishments}</h1>
+          <h3 className="text-white text-xs">Remaining</h3>
         </div>
       </div>
     );
   } else
     return (
-      <div className="text-center">
-        <h1>Count yourself lucky!</h1>
-        <div> </div>
+      <div className="grid grid-cols-5">
+        <div></div>
+        <div className="text-center text-sm col-span-3 ">
+          Count yourself lucky!
+        </div>
+        <div className="justify-self-end border border-black p-3 m-1 bg-secondary text-center">
+          <h1 className="text-white text-xs">{remainingPunishments}</h1>
+          <h3 className="text-white text-xs">Remaining</h3>
+        </div>
       </div>
     );
 };

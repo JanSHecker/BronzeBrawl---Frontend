@@ -36,7 +36,7 @@ const router = createBrowserRouter([
 
 const Router = () => {
   return (
-    <div className="min-h-screen max-h-screen flex flex-col items-center justify-evenly p-5 ">
+    <div className="min-h-screen max-h-screen flex flex-col items-center justify-evenly m-4 ">
       <RouterProvider router={router} />
     </div>
   );

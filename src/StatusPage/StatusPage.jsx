@@ -68,11 +68,11 @@ const StatusPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 ">
-        <div className="grid grid-cols-2 gap-2 ">
+      <div className="flex flex-col justify-start gap-2 min-h-screen">
+        <div className="grid grid-cols-2 gap-2">
           <div className="flex flex-col text-center justify-center bg-slate-300 border border-black rounded p-1">
-            <img src={imgURL} alt="champion icon" className="m-1"></img>
-            <h1 className="m-0.5 border border-black">{`${kda[0]}/${kda[1]}/${kda[2]}`}</h1>
+            <img src={imgURL} alt="champion icon" className="m-1 "></img>
+            <h1 className="m-0.5 border border-black text-sm">{`${kda[0]}/${kda[1]}/${kda[2]}`}</h1>
           </div>
           <ChampionRotation
             changeCounter={changeCounter}

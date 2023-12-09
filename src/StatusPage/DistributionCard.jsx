@@ -32,13 +32,15 @@ const DistributionCard = ({ champion, rewardStack, hasRewards }) => {
   };
   useEffect(() => {});
   return (
-    <div className="flex flex-column justify-center w-1/4 m-1">
+    <div className="flex flex-col w-1/6 m-1">
       <button
         onClick={handleDistribution}
         disabled={champion.player === null || !hasRewards || loading}
       >
         <img src={championUrl} alt={champion.name} style={imageStyle} />
-        <h1>{champion.player?.playerName || "No Player"}</h1>
+        <div className="text-xs">
+          {champion.player?.playerName || "No Player"}
+        </div>
       </button>
     </div>
   );
