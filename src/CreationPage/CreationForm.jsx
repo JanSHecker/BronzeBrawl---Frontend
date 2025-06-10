@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Dropdown, Input } from "react-daisyui";
-import { BACKEND_PORT, GAME_ID_KEY } from "../constants";
+import { BACKEND_PORT, GAME_ID_KEY, GAME_VERSION_KEY } from "../constants";
 
 const CreationForm = ({ setGameId, currentDomain }) => {
   const [punishmentAmount, setPunishmentAmount] = useState("");
@@ -10,25 +10,26 @@ const CreationForm = ({ setGameId, currentDomain }) => {
   const [defaultCounter, setDefaultCounter] = useState("");
 
   const handleSubmit = async () => {
-    // console.log({
-    //   punishmentAmount: punishmentAmount,
-    //   rewardAmount: rewardAmount,
-    //   rotationMode: rotationMode,
-    //   defaultCounter: defaultCounter,
-    // });
+    try {
+      const versionResponse = await axios.get("https://ddragon.leagueoflegends.com/api/versions.json");
+      const currentVersion = versionResponse.data[0];
 
-    const res = await axios.get(currentDomain + BACKEND_PORT + "runGame", {
-      params: {
-        punishmentAmount: punishmentAmount,
-        rewardAmount: rewardAmount,
-        rotationMode: rotationMode,
-        defaultCounter: defaultCounter,
-      },
-    });
-    const game = res.data;
-    console.log(game);
-    setGameId(game.gameId);
-    localStorage.setItem(GAME_ID_KEY, game.gameId);
+      const res = await axios.get(currentDomain + BACKEND_PORT + "runGame", {
+        params: {
+          punishmentAmount: punishmentAmount,
+          rewardAmount: rewardAmount,
+          rotationMode: rotationMode,
+          defaultCounter: defaultCounter,
+        },
+      });
+      const game = res.data;
+      console.log(game);
+      setGameId(game.gameId);
+      localStorage.setItem(GAME_ID_KEY, game.gameId);
+      localStorage.setItem(GAME_VERSION_KEY, currentVersion);
+    } catch (error) {
+      console.error("Error fetching game version:", error);
+    }
   };
 
   const handlePunish = (event) => {

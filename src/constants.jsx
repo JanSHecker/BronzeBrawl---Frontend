@@ -14,3 +14,7 @@ export const DISTRIBUTED_PUNISHMENT = 2;
 //Teamnames
 export const TEAMBLUE = "Team Blue";
 export const TEAMRED = "Team Red";
+
+//Game Version
+export const GAME_VERSION_KEY = "gameVersion";
+export const DEFAULT_GAME_VERSION = "13.24.1"; // fallback version

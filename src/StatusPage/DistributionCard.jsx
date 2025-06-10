@@ -2,12 +2,26 @@ import { useEffect, useState } from "react";
 
 import processChampionName from "../nameAdjuster";
 import axios from "axios";
-import { BACKEND_PORT, DISTRIBUTED_PUNISHMENT, REWARD_KEY } from "../constants";
+import { BACKEND_PORT, DISTRIBUTED_PUNISHMENT, REWARD_KEY, GAME_VERSION_KEY } from "../constants";
 
 const DistributionCard = ({ champion, rewardStack, hasRewards }) => {
+  console.log('DistributionCard component rendering with champion:', champion);
   const [loading, setLoading] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const name = processChampionName(champion.championName);
-  const championUrl = `https://static.bigbrain.gg/assets/lol/riot_static/13.24.1/img/champion/${name}.png`;
+  const championUrl = `https://static.bigbrain.gg/assets/lol/riot_static/${localStorage.getItem(GAME_VERSION_KEY)}/img/champion/${name}.png`;
+  // if the image is not found use placeholder image
+  const placeholderUrl = '../Champion_Placeholder.png';
+  
+  console.log('Trying to load champion image:', championUrl);
+  console.log('Placeholder path:', placeholderUrl);
+  console.log('Current imgError state:', imgError);
+
+  const handleImageError = () => {
+    console.log('Image failed to load, switching to placeholder');
+    setImgError(true);
+  };
+
   const handleDistribution = async () => {
     console.log(localStorage.getItem("playerId"));
     setLoading(true);
@@ -37,7 +51,17 @@ const DistributionCard = ({ champion, rewardStack, hasRewards }) => {
         onClick={handleDistribution}
         disabled={champion.player === null || !hasRewards || loading}
       >
-        <img src={championUrl} alt={champion.name} style={imageStyle} />
+        <div className="relative">
+          <img 
+            src={imgError ? placeholderUrl : championUrl} 
+            onError={handleImageError}
+            alt={champion.name} 
+            style={imageStyle}
+          />
+          {imgError && (
+            <div className="absolute top-0 right-0 bg-red-500 text-white text-xs px-1 rounded">!</div>
+          )}
+        </div>
         <div className="text-xs">
           {champion.player?.playerName || "No Player"}
         </div>

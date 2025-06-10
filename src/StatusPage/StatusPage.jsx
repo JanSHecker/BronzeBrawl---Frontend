@@ -2,20 +2,24 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import PunishmentDisplay from "./PunishmentDisplay";
 import RewardDisplay from "./RewardDisplay";
-import { BACKEND_PORT } from "../constants";
+import { BACKEND_PORT, GAME_VERSION_KEY, DEFAULT_GAME_VERSION } from "../constants";
 import ChampionRotation from "./ChampionRotation";
 import { useNavigate } from "react-router-dom";
 
 const StatusPage = () => {
-  const imgURL = `https://static.bigbrain.gg/assets/lol/riot_static/13.24.1/img/champion/${localStorage.getItem(
-    "activeChampionName"
-  )}.png`;
+  const [imgError, setImgError] = useState(false);
+  const placeholderUrl = '../Champion_Placeholder.png';
   const navigate = useNavigate();
   const [kda, setKda] = useState([]);
   const [changeCounter, setChangeCounter] = useState([]);
   const [punishmentStack, setPunishmentStack] = useState([]);
   const [rewardStack, setRewardStack] = useState([]);
   const [enemyTeam, setEnemyTeam] = useState([]);
+
+  // Get the version safely
+  const version = localStorage.getItem(GAME_VERSION_KEY) || DEFAULT_GAME_VERSION;
+  const championName = localStorage.getItem("activeChampionName");
+  const imgURL = `https://static.bigbrain.gg/assets/lol/riot_static/${version}/img/champion/${championName}.png`;
 
   const unfulfilledPunishments = punishmentStack.filter(
     (punishment) => !punishment.recieved
@@ -71,7 +75,17 @@ const StatusPage = () => {
       <div className="flex flex-col justify-start gap-2 min-h-screen">
         <div className="grid grid-cols-2 gap-2">
           <div className="flex flex-col text-center justify-center bg-slate-300 border border-black rounded p-1">
-            <img src={imgURL} alt="champion icon" className="m-1 "></img>
+            <div className="relative">
+              <img 
+                src={imgError ? placeholderUrl : imgURL} 
+                onError={() => setImgError(true)}
+                alt="champion icon" 
+                className="m-1"
+              />
+              {imgError && (
+                <div className="absolute top-0 right-0 bg-red-500 text-white text-xs px-1 rounded">!</div>
+              )}
+            </div>
             <h1 className="m-0.5 border border-black text-sm">{`${kda[0]}/${kda[1]}/${kda[2]}`}</h1>
           </div>
           <ChampionRotation

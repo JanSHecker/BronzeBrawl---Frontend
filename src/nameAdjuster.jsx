@@ -29,6 +29,9 @@ function processChampionName(name) {
   if (name === "Wukong") {
     name = "MonkeyKing";
   }
+  // if (name === "Mega Gnar") {
+  //   name = "Gnar";
+  // }
   return name;
 }
 export default processChampionName;
